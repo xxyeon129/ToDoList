@@ -8,7 +8,7 @@ export default function ToDoTemplate({ todos, setTodos }) {
 
     const addTodo = (title, content) => {
         nextId.current += 1;
-        const todo = { id: nextId.current, title, content, done: false };
+        const todo = { id: nextId.current, title, content, isDone: false };
         setTodos([...todos, todo]);
         localStorage.setItem("toDoData", JSON.stringify([...todos, todo]));
     };
