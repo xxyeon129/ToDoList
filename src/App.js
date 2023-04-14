@@ -18,7 +18,7 @@ function App() {
                 <div>
                     <h2>🔥 Working</h2>
                     {todos
-                        .filter((todo) => todo.done === false)
+                        .filter((todo) => todo.isDone === false)
                         .map((todo, key) => (
                             <ToDoBlock todo={todo} key={key} />
                         ))}
@@ -26,7 +26,7 @@ function App() {
                 <div>
                     <h2>🎉 Done</h2>
                     {todos
-                        .filter((todo) => todo.done === true)
+                        .filter((todo) => todo.isDone === true)
                         .map((todo, key) => (
                             <ToDoBlock todo={todo} key={key} />
                         ))}
