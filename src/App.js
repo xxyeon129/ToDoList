@@ -16,6 +16,17 @@ function App() {
         [todos]
     );
 
+    const doneTodo = useCallback(
+        (doneId) => {
+            const doneIdx = todos.findIndex((todo) => todo.id === doneId);
+            const newTodos = [...todos];
+            newTodos[doneIdx].isDone = todos[doneIdx].isDone ? false : true;
+            setTodos(newTodos);
+            localStorage.setItem("toDoData", JSON.stringify(newTodos));
+        },
+        [todos]
+    );
+
     return (
         <div>
             <h3>To Do List</h3>
@@ -33,6 +44,7 @@ function App() {
                                 todo={todo}
                                 key={key}
                                 deleteTodo={deleteTodo}
+                                doneTodo={doneTodo}
                             />
                         ))}
                 </div>
@@ -45,6 +57,7 @@ function App() {
                                 todo={todo}
                                 key={key}
                                 deleteTodo={deleteTodo}
+                                doneTodo={doneTodo}
                             />
                         ))}
                 </div>
