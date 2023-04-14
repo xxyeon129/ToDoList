@@ -8,7 +8,7 @@ export default function ToDoTemplate({ todos, setTodos }) {
 
     const addTodo = (title, content) => {
         nextId.current += 1;
-        const todo = { id: nextId.current, title, content, checked: false };
+        const todo = { id: nextId.current, title, content, done: false };
         setTodos([...todos, todo]);
         localStorage.setItem("toDoData", JSON.stringify([...todos, todo]));
     };
@@ -33,11 +33,13 @@ export default function ToDoTemplate({ todos, setTodos }) {
                 <input
                     placeholder="할 일을 요약해서 입력해주세요."
                     onChange={(e) => setInputTitle(e.target.value)}
+                    value={inputTitle}
                 />
                 <label>내용</label>
                 <input
                     placeholder="할 일을 입력해주세요."
                     onChange={(e) => setInputContent(e.target.value)}
+                    value={inputContent}
                 />
                 <button type="submit">추가하기</button>
             </form>
