@@ -5,14 +5,16 @@ export default function ToDoBlock({ todo, deleteTodo, doneTodo }) {
         <BlockStyle>
             <h2>{todo.title}</h2>
             <p>{todo.content}</p>
-            <button id="delete" onClick={() => deleteTodo(todo.id)}>
-                삭제하기
-            </button>
-            {todo.isDone ? (
-                <button onClick={() => doneTodo(todo.id)}>취소</button>
-            ) : (
-                <button onClick={() => doneTodo(todo.id)}>완료</button>
-            )}
+            <ButtonStyle>
+                <button id="delete" onClick={() => deleteTodo(todo.id)}>
+                    삭제
+                </button>
+                {todo.isDone ? (
+                    <button onClick={() => doneTodo(todo.id)}>취소</button>
+                ) : (
+                    <button onClick={() => doneTodo(todo.id)}>완료</button>
+                )}
+            </ButtonStyle>
         </BlockStyle>
     );
 }
@@ -22,9 +24,15 @@ const BlockStyle = styled.div`
     width: 13rem;
     border: 3px solid #070a52;
     border-radius: 10px;
+`;
+
+const ButtonStyle = styled.div`
+    display: flex;
+    gap: 0.4rem;
 
     button {
-        width: 6rem;
+        flex-grow: 1;
+
         padding: 0.5rem;
         margin-bottom: 0.8rem;
         background: inherit;
@@ -40,7 +48,6 @@ const BlockStyle = styled.div`
     }
 
     #delete {
-        margin-right: 0.5rem;
         border: 2px solid #d21312;
         border-radius: 10px;
 
