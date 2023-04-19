@@ -64,8 +64,6 @@ const HeaderStyle = styled.div`
     padding: 0 1rem;
 `;
 
-const ContentStyle = styled.div``;
-
 const WorkingStyle = styled.div`
     padding: 0 1rem;
 `;
