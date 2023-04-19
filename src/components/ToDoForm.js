@@ -1,18 +1,15 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { addTodo } from "redux/modules/todos";
 
 export default function ToDoTemplate({ todos, setTodos }) {
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
 
-    let nextId = useRef(0);
+    const dispatch = useDispatch();
 
-    const addTodo = (title, content) => {
-        nextId.current += 1;
-        const todo = { id: nextId.current, title, content, isDone: false };
-        setTodos([...todos, todo]);
-        localStorage.setItem("toDoData", JSON.stringify([...todos, todo]));
-    };
+    let nextId = useRef(0);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,7 +19,18 @@ export default function ToDoTemplate({ todos, setTodos }) {
         if (inputContent === "") {
             return alert("할 일을 입력해주세요.");
         }
-        addTodo(inputTitle, inputContent);
+
+        nextId.current += 1;
+
+        const newTodo = {
+            id: nextId.current,
+            title: inputTitle,
+            content: inputContent,
+            isDone: false,
+        };
+
+        dispatch(addTodo(newTodo));
+
         setInputTitle("");
         setInputContent("");
     };
