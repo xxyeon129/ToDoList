@@ -3,7 +3,7 @@ import ToDoForm from "components/ToDoForm";
 import ToDoBlock from "components/ToDoBlock";
 import { useSelector } from "react-redux";
 
-export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
+export default function MainPage() {
     const todoData = useSelector((todosModule) => todosModule.todoReducer);
     return (
         <ToDoWrapStyle>
@@ -12,19 +12,14 @@ export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
                     <h3>To Do List</h3>
                     <h4>React</h4>
                 </HeaderStyle>
-                <ToDoForm todos={todos} setTodos={setTodos} />
+                <ToDoForm />
                 <WorkingStyle>
                     <h2>🔥 Working</h2>
                     <WorkingContentStyle>
                         {todoData
                             .filter((todo) => todo.isDone === false)
                             .map((todo, key) => (
-                                <ToDoBlock
-                                    todo={todo}
-                                    key={key}
-                                    deleteTodo={deleteTodo}
-                                    doneTodo={doneTodo}
-                                />
+                                <ToDoBlock todo={todo} key={key} />
                             ))}
                     </WorkingContentStyle>
                 </WorkingStyle>
@@ -34,12 +29,7 @@ export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
                         {todoData
                             .filter((todo) => todo.isDone === true)
                             .map((todo, key) => (
-                                <ToDoBlock
-                                    todo={todo}
-                                    key={key}
-                                    deleteTodo={deleteTodo}
-                                    doneTodo={doneTodo}
-                                />
+                                <ToDoBlock todo={todo} key={key} />
                             ))}
                     </DoneContentStyle>
                 </DoneStyle>

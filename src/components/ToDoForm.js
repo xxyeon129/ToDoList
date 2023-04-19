@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "redux/modules/todos";
 
-export default function ToDoTemplate({ todos, setTodos }) {
+export default function ToDoForm() {
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
 
