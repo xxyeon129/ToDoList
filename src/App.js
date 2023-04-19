@@ -35,9 +35,7 @@ export default function App() {
                     <h3>To Do List</h3>
                     <h4>React</h4>
                 </HeaderStyle>
-                <FormStyle>
-                    <ToDoForm todos={todos} setTodos={setTodos} />
-                </FormStyle>
+                <ToDoForm todos={todos} setTodos={setTodos} />
                 <ContentStyle>
                     <WorkingStyle>
                         <h2>🔥 Working</h2>
@@ -92,8 +90,6 @@ const HeaderStyle = styled.div`
     justify-content: space-between;
     padding: 0 1rem;
 `;
-
-const FormStyle = styled.div``;
 
 const ContentStyle = styled.div``;
 
