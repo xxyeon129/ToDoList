@@ -1,4 +1,4 @@
-import Main from "pages/Main";
+import MainPage from "pages/Main";
 import { useCallback, useState } from "react";
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
     );
 
     return (
-        <Main
+        <MainPage
             todos={todos}
             setTodos={setTodos}
             deleteTodo={deleteTodo}

@@ -2,15 +2,15 @@ import styled from "styled-components";
 import ToDoForm from "components/ToDoForm";
 import ToDoBlock from "components/ToDoBlock";
 
-export default function Main({ todos, setTodos, deleteTodo, doneTodo }) {
-    <ToDoWrapStyle>
-        <ContainerStyle>
-            <HeaderStyle>
-                <h3>To Do List</h3>
-                <h4>React</h4>
-            </HeaderStyle>
-            <ToDoForm todos={todos} setTodos={setTodos} />
-            <ContentStyle>
+export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
+    return (
+        <ToDoWrapStyle>
+            <ContainerStyle>
+                <HeaderStyle>
+                    <h3>To Do List</h3>
+                    <h4>React</h4>
+                </HeaderStyle>
+                <ToDoForm todos={todos} setTodos={setTodos} />
                 <WorkingStyle>
                     <h2>🔥 Working</h2>
                     <WorkingContentStyle>
@@ -41,9 +41,9 @@ export default function Main({ todos, setTodos, deleteTodo, doneTodo }) {
                             ))}
                     </DoneContentStyle>
                 </DoneStyle>
-            </ContentStyle>
-        </ContainerStyle>
-    </ToDoWrapStyle>;
+            </ContainerStyle>
+        </ToDoWrapStyle>
+    );
 }
 
 const ToDoWrapStyle = styled.div`
