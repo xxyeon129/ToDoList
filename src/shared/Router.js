@@ -1,4 +1,4 @@
-import MainPage from "pages/Main";
+import MainPage from "pages/MainPage";
 import ToDoDetail from "pages/ToDoDetail";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

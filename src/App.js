@@ -1,4 +1,4 @@
-import MainPage from "pages/Main";
+import MainPage from "pages/MainPage";
 import { useCallback, useState } from "react";
 
 export default function App() {
