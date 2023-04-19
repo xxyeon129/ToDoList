@@ -2,14 +2,23 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "redux/modules/todos";
+import { doneTodo } from "redux/modules/todos";
 
-export default function ToDoBlock({ todo, doneTodo }) {
+export default function ToDoBlock({ todo }) {
     const todoData = useSelector((todosModule) => todosModule.todoReducer);
     const dispatch = useDispatch();
 
     const deleteHandler = (deleteId) => {
         const newTodos = todoData.filter((todo) => todo.id !== deleteId);
         dispatch(deleteTodo(newTodos));
+    };
+
+    const doneHandler = (doneId) => {
+        const clickIdx = todoData.findIndex((todo) => todo.id === doneId);
+        const newTodos = [...todoData];
+        newTodos[clickIdx].isDone = !todoData[clickIdx].isDone;
+
+        dispatch(doneTodo(newTodos));
     };
 
     return (
@@ -21,9 +30,9 @@ export default function ToDoBlock({ todo, doneTodo }) {
                     삭제
                 </button>
                 {todo.isDone ? (
-                    <button onClick={() => doneTodo(todo.id)}>취소</button>
+                    <button onClick={() => doneHandler(todo.id)}>취소</button>
                 ) : (
-                    <button onClick={() => doneTodo(todo.id)}>완료</button>
+                    <button onClick={() => doneHandler(todo.id)}>완료</button>
                 )}
             </ButtonStyle>
         </BlockStyle>
