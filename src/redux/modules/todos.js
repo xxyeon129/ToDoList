@@ -5,11 +5,19 @@ const storageTodos = getTodos === null ? [] : getTodos;
 
 // Active Value
 const ADD = "ADD";
+const DELETE = "DELETE";
 
 // Action Creator
 export const addTodo = (payload) => {
     return {
         type: ADD,
+        payload,
+    };
+};
+
+export const deleteTodo = (payload) => {
+    return {
+        type: DELETE,
         payload,
     };
 };
@@ -23,6 +31,9 @@ const todoReducer = (state = storageTodos, action) => {
                 JSON.stringify([...state, action.payload])
             );
             return [...state, action.payload];
+        case DELETE:
+            localStorage.setItem("toDoData", JSON.stringify(action.payload));
+            return action.payload;
         default:
             return state;
     }

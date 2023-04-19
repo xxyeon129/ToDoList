@@ -1,12 +1,23 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "redux/modules/todos";
 
-export default function ToDoBlock({ todo, deleteTodo, doneTodo }) {
+export default function ToDoBlock({ todo, doneTodo }) {
+    const todoData = useSelector((todosModule) => todosModule.todoReducer);
+    const dispatch = useDispatch();
+
+    const deleteHandler = (deleteId) => {
+        const newTodos = todoData.filter((todo) => todo.id !== deleteId);
+        dispatch(deleteTodo(newTodos));
+    };
+
     return (
         <BlockStyle>
             <h2>{todo.title}</h2>
             <p>{todo.content}</p>
             <ButtonStyle>
-                <button id="delete" onClick={() => deleteTodo(todo.id)}>
+                <button id="delete" onClick={() => deleteHandler(todo.id)}>
                     삭제
                 </button>
                 {todo.isDone ? (
