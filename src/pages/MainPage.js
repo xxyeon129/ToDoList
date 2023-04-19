@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import ToDoForm from "components/ToDoForm";
 import ToDoBlock from "components/ToDoBlock";
+import { useSelector } from "react-redux";
 
 export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
+    const todoData = useSelector((todosModule) => todosModule.todoReducer);
     return (
         <ToDoWrapStyle>
             <ContainerStyle>
@@ -14,7 +16,7 @@ export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
                 <WorkingStyle>
                     <h2>🔥 Working</h2>
                     <WorkingContentStyle>
-                        {todos
+                        {todoData
                             .filter((todo) => todo.isDone === false)
                             .map((todo, key) => (
                                 <ToDoBlock
@@ -29,7 +31,7 @@ export default function MainPage({ todos, setTodos, deleteTodo, doneTodo }) {
                 <DoneStyle>
                     <h2>🎉 Done</h2>
                     <DoneContentStyle>
-                        {todos
+                        {todoData
                             .filter((todo) => todo.isDone === true)
                             .map((todo, key) => (
                                 <ToDoBlock
