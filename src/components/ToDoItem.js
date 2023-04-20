@@ -5,15 +5,18 @@ import { deleteTodo } from "redux/modules/todos";
 import { doneTodo } from "redux/modules/todos";
 import { Link } from "react-router-dom";
 
-export default function ToDoBlock({ todo }) {
+export default function ToDoItem({ todo }) {
+    // Redux To Do State
     const todoData = useSelector((todosModule) => todosModule.todoReducer);
     const dispatch = useDispatch();
 
+    // To Do 삭제
     const deleteHandler = (deleteId) => {
         const newTodos = todoData.filter((todo) => todo.id !== deleteId);
         dispatch(deleteTodo(newTodos));
     };
 
+    // To Do 완료/취소
     const doneHandler = (doneId) => {
         const clickIdx = todoData.findIndex((todo) => todo.id === doneId);
         const newTodos = [...todoData];
@@ -23,10 +26,10 @@ export default function ToDoBlock({ todo }) {
     };
 
     return (
-        <BlockStyle>
-            <Link to={`/todo/${todo.id}`}>
-                <h2>{todo.title}</h2>
-            </Link>
+        <ItemContainerStyle>
+            <h2>
+                <Link to={`/todo/${todo.id}`}>{todo.title}</Link>
+            </h2>
             <p>{todo.content}</p>
             <ButtonStyle>
                 <button id="delete" onClick={() => deleteHandler(todo.id)}>
@@ -38,18 +41,19 @@ export default function ToDoBlock({ todo }) {
                     <button onClick={() => doneHandler(todo.id)}>완료</button>
                 )}
             </ButtonStyle>
-        </BlockStyle>
+        </ItemContainerStyle>
     );
 }
 
-const BlockStyle = styled.div`
+const ItemContainerStyle = styled.div`
     padding: 1rem 1.5rem;
     width: 13rem;
     border: 3px solid #070a52;
     border-radius: 10px;
 
+    /* title Link */
     a {
-        color: black;
+        color: #070a52;
         text-decoration: none;
 
         :hover {
@@ -65,7 +69,6 @@ const ButtonStyle = styled.div`
 
     button {
         flex-grow: 1;
-
         padding: 0.5rem;
         margin-bottom: 0.8rem;
         background: inherit;
@@ -80,12 +83,11 @@ const ButtonStyle = styled.div`
         }
     }
 
+    /* 삭제 버튼 색상 변경 */
     #delete {
-        border: 2px solid #d21312;
-        border-radius: 10px;
+        border-color: #d21312;
 
         :hover {
-            transition: 0.5s;
             background: #d21312;
         }
     }
