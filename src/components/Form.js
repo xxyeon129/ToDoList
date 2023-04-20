@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "redux/modules/todos";
 
-export default function ToDoForm() {
+export default function Form() {
     // 제목, 내용 입력 상태
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
