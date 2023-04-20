@@ -62,7 +62,6 @@ const WorkingStyle = styled.div`
 `;
 
 const WorkingContentStyle = styled.div`
-    /* display: flex; */
     gap: 1.5rem;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -74,6 +73,8 @@ const DoneStyle = styled.div`
 `;
 
 const DoneContentStyle = styled.div`
-    display: flex;
     gap: 1.5rem;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 `;
