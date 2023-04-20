@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "redux/modules/todos";
 import { doneTodo } from "redux/modules/todos";
+import { Link } from "react-router-dom";
 
 export default function ToDoBlock({ todo }) {
     const todoData = useSelector((todosModule) => todosModule.todoReducer);
@@ -23,7 +24,9 @@ export default function ToDoBlock({ todo }) {
 
     return (
         <BlockStyle>
-            <h2>{todo.title}</h2>
+            <Link to={`/todo/${todo.id}`}>
+                <h2>{todo.title}</h2>
+            </Link>
             <p>{todo.content}</p>
             <ButtonStyle>
                 <button id="delete" onClick={() => deleteHandler(todo.id)}>
@@ -44,6 +47,16 @@ const BlockStyle = styled.div`
     width: 13rem;
     border: 3px solid #070a52;
     border-radius: 10px;
+
+    a {
+        color: black;
+        text-decoration: none;
+
+        :hover {
+            transition: 0.5s;
+            color: #576cbc;
+        }
+    }
 `;
 
 const ButtonStyle = styled.div`
