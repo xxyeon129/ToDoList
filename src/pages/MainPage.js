@@ -45,7 +45,8 @@ const ToDoWrapStyle = styled.div`
 `;
 
 const ContainerStyle = styled.div`
-    width: 1200px;
+    max-width: 1200px;
+    min-width: 800px;
     display: flex;
     flex-direction: column;
 `;
@@ -61,8 +62,11 @@ const WorkingStyle = styled.div`
 `;
 
 const WorkingContentStyle = styled.div`
-    display: flex;
+    /* display: flex; */
     gap: 1.5rem;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 `;
 
 const DoneStyle = styled.div`
