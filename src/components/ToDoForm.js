@@ -1,15 +1,15 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "redux/modules/todos";
+import { useSelector } from "react-redux";
 
 export default function ToDoForm() {
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
+    const todoData = useSelector((todosModule) => todosModule.todoReducer);
 
     const dispatch = useDispatch();
-
-    let nextId = useRef(0);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,10 +20,8 @@ export default function ToDoForm() {
             return alert("할 일을 입력해주세요.");
         }
 
-        nextId.current += 1;
-
         const newTodo = {
-            id: nextId.current,
+            id: todoData.length,
             title: inputTitle,
             content: inputContent,
             isDone: false,
