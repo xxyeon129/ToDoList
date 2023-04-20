@@ -94,5 +94,9 @@ const FormContainer = styled.div`
         padding: 0.6rem 1rem;
         border-radius: 10px;
         border: none;
+
+        :hover {
+            cursor: pointer;
+        }
     }
 `;
