@@ -1,19 +1,17 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { addTodo } from "redux/modules/todos";
 
-export default function ToDoTemplate({ todos, setTodos }) {
+export default function Form() {
+    // 제목, 내용 입력 상태
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
 
-    let nextId = useRef(0);
+    // Redux
+    const dispatch = useDispatch();
 
-    const addTodo = (title, content) => {
-        nextId.current += 1;
-        const todo = { id: nextId.current, title, content, isDone: false };
-        setTodos([...todos, todo]);
-        localStorage.setItem("toDoData", JSON.stringify([...todos, todo]));
-    };
-
+    // To Do 추가
     const handleSubmit = (event) => {
         event.preventDefault();
         if (inputTitle === "") {
@@ -22,15 +20,24 @@ export default function ToDoTemplate({ todos, setTodos }) {
         if (inputContent === "") {
             return alert("할 일을 입력해주세요.");
         }
-        addTodo(inputTitle, inputContent);
+
+        const newTodo = {
+            id: Date.now(),
+            title: inputTitle,
+            content: inputContent,
+            isDone: false,
+        };
+
+        dispatch(addTodo(newTodo));
+
         setInputTitle("");
         setInputContent("");
     };
 
     return (
-        <ContainerStyle>
+        <FormContainerStyle>
             <form onSubmit={handleSubmit}>
-                <FormContainer>
+                <FormStyle>
                     <InputStyle>
                         <label>제목</label>
                         <input
@@ -46,23 +53,21 @@ export default function ToDoTemplate({ todos, setTodos }) {
                         />
                     </InputStyle>
                     <button type="submit">추가하기</button>
-                </FormContainer>
+                </FormStyle>
             </form>
-        </ContainerStyle>
+        </FormContainerStyle>
     );
 }
 
-const ContainerStyle = styled.div`
+const FormContainerStyle = styled.div`
     background-color: #f0f0f0;
     padding: 1.5rem;
     border-radius: 0.5rem;
     font-weight: bold;
-    input {
-        margin-left: 0.3rem;
-    }
 `;
 
 const InputStyle = styled.div`
+    /* 제목, 내용 lable, input */
     display: flex;
     align-items: center;
 
@@ -79,7 +84,8 @@ const InputStyle = styled.div`
     }
 `;
 
-const FormContainer = styled.div`
+const FormStyle = styled.div`
+    /* 제목, 내용 input과 button 구획 */
     display: flex;
     justify-content: space-between;
 
@@ -90,5 +96,9 @@ const FormContainer = styled.div`
         padding: 0.6rem 1rem;
         border-radius: 10px;
         border: none;
+
+        :hover {
+            cursor: pointer;
+        }
     }
 `;
