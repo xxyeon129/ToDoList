@@ -2,12 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "redux/modules/todos";
-import { useSelector } from "react-redux";
 
 export default function ToDoForm() {
     const [inputTitle, setInputTitle] = useState("");
     const [inputContent, setInputContent] = useState("");
-    const todoData = useSelector((todosModule) => todosModule.todoReducer);
 
     const dispatch = useDispatch();
 
@@ -21,7 +19,7 @@ export default function ToDoForm() {
         }
 
         const newTodo = {
-            id: todoData.length,
+            id: Date.now(),
             title: inputTitle,
             content: inputContent,
             isDone: false,
