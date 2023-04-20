@@ -8,7 +8,7 @@ export default function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/todo" element={<ToDoDetail />} />
+                <Route path="/todo/:id" element={<ToDoDetail />} />
             </Routes>
         </BrowserRouter>
     );

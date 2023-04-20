@@ -1,5 +1,5 @@
-import MainPage from "pages/MainPage";
+import Router from "shared/Router";
 
 export default function App() {
-    return <MainPage />;
+    return <Router />;
 }
